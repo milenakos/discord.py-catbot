@@ -316,7 +316,7 @@ class DiscordWebSocket:
         # Circular import
         from .http import INTERNAL_API_VERSION
 
-        gateway = gateway or cls.DEFAULT_GATEWAY
+        gateway = cls.DEFAULT_GATEWAY
 
         if not compress:
             url = gateway.with_query(v=INTERNAL_API_VERSION, encoding=encoding)
