@@ -75,13 +75,14 @@ from .subscription import *
 from .presences import *
 from .primary_guild import *
 from .onboarding import *
+from .collectible import *
 
 
 class VersionInfo(NamedTuple):
     major: int
     minor: int
     micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
+    releaselevel: Literal['alpha', 'beta', 'candidate', 'final']
     serial: int
 
 

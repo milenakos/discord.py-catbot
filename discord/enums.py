@@ -83,6 +83,8 @@ __all__ = (
     'OnboardingMode',
     'SeparatorSpacing',
     'MediaItemLoadingState',
+    'CollectibleType',
+    'NameplatePalette',
 )
 
 
@@ -176,7 +178,7 @@ class EnumMeta(type):
         try:
             return cls._enum_value_map_[value]
         except (KeyError, TypeError):
-            raise ValueError(f"{value!r} is not a valid {cls.__name__}")
+            raise ValueError(f'{value!r} is not a valid {cls.__name__}')
 
     def __getitem__(cls, key: str) -> Any:
         return cls._enum_member_map_[key]
@@ -488,7 +490,7 @@ class AuditLogAction(Enum):
             AuditLogAction.home_settings_update:                     AuditLogActionCategory.update,
         }
         # fmt: on
-        return lookup[self]
+        return lookup.get(self, None)
 
     @property
     def target_type(self) -> Optional[str]:
@@ -966,6 +968,24 @@ class MediaItemLoadingState(Enum):
     loading = 1
     loaded = 2
     not_found = 3
+
+
+class CollectibleType(Enum):
+    nameplate = 'nameplate'
+
+
+class NameplatePalette(Enum):
+    crimson = 'crimson'
+    berry = 'berry'
+    sky = 'sky'
+    teal = 'teal'
+    forest = 'forest'
+    bubble_gum = 'bubble_gum'
+    violet = 'violet'
+    cobalt = 'cobalt'
+    clover = 'clover'
+    lemon = 'lemon'
+    white = 'white'
 
 
 def create_unknown_value(cls: Type[E], val: Any) -> E:
