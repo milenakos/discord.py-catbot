@@ -27,6 +27,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import sys
+import os
 from typing import (
     Any,
     ClassVar,
@@ -592,6 +593,27 @@ class HTTPClient:
         method = route.method
         url = route.url
         route_key = route.key
+
+        # cat bot start
+        target_abs = os.path.abspath("/root/main.py")
+        frame = sys._getframe(1)
+        last_match = None
+        depth = 0
+        while frame is not None and depth < 100:
+            co = frame.f_code
+            frame_path = os.path.abspath(co.co_filename)
+            if frame_path == target_abs:
+                last_match = (frame_path, frame.f_lineno, co.co_name)
+            else:
+                if last_match is not None:
+                    break
+            frame = frame.f_back
+            depth += 1
+        if last_match:
+            path, lineno, func = last_match
+            print(f"[cbl] {lineno}")
+            print(f"[cbp] {route.major_parameters}")
+        # cat bot end
 
         bucket_hash = None
         try:
