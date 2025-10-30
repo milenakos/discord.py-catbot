@@ -765,6 +765,11 @@ class HTTPClient:
                             # check if it's a global rate limit
                             is_global = data.get('global', False)
                             if is_global:
+                                # cat bot start
+                                print(headers)
+                                print(response.headers)
+                                # cat bot end
+
                                 _log.warning('Global rate limit has been hit. Retrying in %.2f seconds.', retry_after)
                                 self._global_over.clear()
 
